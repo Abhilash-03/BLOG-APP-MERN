@@ -1,0 +1,17 @@
+{
+  "name": "backend-mern-blog",
+  "version": "1.0.0",
+  "description": "It's a backend of mern blog app.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
