@@ -14,6 +14,10 @@ const userSchema = new Schema({
    password: {
     type: String,
     required: true,
+   },
+   profilePicture: {
+      type: String,
+      default: "https://tse1.mm.bing.net/th?id=OIP.TpqSE-tsrMBbQurUw2Su-AHaHk&pid=Api&P=0&h=180"
    }
 
 }, { timestamps: true });
