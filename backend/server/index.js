@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import connectDB from '../db/index.js';
 import userRouter from '../routes/user.route.js';
 import authRouter from '../routes/auth.route.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,13 +11,14 @@ const PORT = process.env.PORT || 3000;
 dotenv.config();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
     res.send('Hello MERN BLOG APP server')
 })
 
 // routes
-app.use('/api/v1/test', userRouter);
+app.use('/api/v1/user', userRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use((err, req, res, next) => {

@@ -17,7 +17,7 @@ const signup = async(req, res, next) => {
      const newUser = await User.create({ username, email, password: hashedPassword });
   
      res
-     .status(200)
+     .status(201)
      .json(newUser)
   } catch (error) {
     next(error);
@@ -30,7 +30,7 @@ const login = async(req, res, next) => {
   if(!email || !password) {
     next(errorHandler(400, 'All fields are required'));
   }
-  try {
+  try{
     const validUser = await User.findOne({ email });
     if(!validUser) {
       next(errorHandler(404, 'User not found'));
@@ -44,12 +44,12 @@ const login = async(req, res, next) => {
     const token = jwt.sign(
       { id: validUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: '15m' }
+      { expiresIn: '3h' }
     )
 
     const { password: pass, ...rest} = validUser._doc; //get userdetails without password.
 
-    res.status(200).cookie('access_token', token, { httpOnly: true }).json({ message: 'Login Successfully', rest });
+    res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);
 
   } catch (error) {
      next(error)
