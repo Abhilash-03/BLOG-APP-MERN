@@ -17,7 +17,7 @@ const create = async (req, res, next) => {
     const newPost = await Post.create({
         ...req.body,
         slug,
-
+        userId: req.user.id,
     })
     res.status(201).json(newPost);
  } catch (error) {
