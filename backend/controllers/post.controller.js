@@ -26,6 +26,54 @@ const create = async (req, res, next) => {
 
 }
 
+const getPosts = async(req, res, next) => {
+   const { startIndex, limit, order, userId, category, slug, postId, searchTerm } = req.query;
+    try {
+      const index = parseInt(startIndex) || 0;
+      const limits = parseInt(limit) || 9;
+      const sortDirection = order === 'asc' ? 1 : -1;
+      const posts = await Post.find({
+         ...(userId && {userId}),
+         ...(category && {category}),
+         ...(slug && {slug}),
+         ...(postId && {postId}),
+         ...(searchTerm && {
+            $or: [
+               { title: {$regex: searchTerm, $options: 'i'}},
+               { content: {$regex: searchTerm, $options: 'i'}},
+            ]
+         }),
+
+      })
+      .sort({ updatedAt: sortDirection })
+      .skip(index)
+      .limit(limits)
+
+      const totalPosts = await Post.countDocuments();
+      const now = new Date();
+
+      const oneMonthAgo = new Date(
+         now.getFullYear(),
+         now.getMonth() - 1,
+         now.getDate()
+      );
+
+      const lastMonthPosts = await Post.countDocuments({
+         createdAt: { $gte: oneMonthAgo },
+      });
+
+      res.status(200).json({
+         posts,
+         totalPosts,
+         lastMonthPosts
+      })
+      
+    } catch (error) {
+      next(error);
+    }
+}
+
 export {
-    create
+    create,
+    getPosts
 }
