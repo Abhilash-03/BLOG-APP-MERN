@@ -31,6 +31,7 @@ const Login = () => {
       })
 
       const data = await res.json();
+      console.log(data);
       if(data.success === false) {
         dispatch(loginFailure(data.message));
       }
@@ -80,7 +81,7 @@ const Login = () => {
 
                />
              </div>
-             <Button gradientMonochrome="success" type="submit" disabled={isLoading}>
+             <Button gradientMonochrome="success" type="submit" >
               { isLoading ? (
                 <>
                 <Spinner size='sm' />
