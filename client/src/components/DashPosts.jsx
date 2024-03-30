@@ -16,7 +16,7 @@ const DashPosts = () => {
     const fetchPosts = async() => {
 
       try {
-        const res = await fetch(`/api/v1/posts/getposts?userId=${currentUser._id}`);
+        const res = await fetch(`/api/v1/posts/getPosts?userId=${currentUser._id}`);
         const data = await res.json();
         if(res.ok) {
           setUserPosts(data.posts);
