@@ -99,7 +99,7 @@ const deletePost = async (req, res, next) => {
                title: req.body.title,
                content: req.body.content,
                category: req.body.category,
-               slug: slug,
+               slug,
                image: req.body.image,
             },
          },
