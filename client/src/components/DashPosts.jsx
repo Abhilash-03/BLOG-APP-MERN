@@ -11,7 +11,6 @@ const DashPosts = () => {
   const [postIdToDelete, setPostIdToDelete] = useState('');
   const { currentUser } = useSelector((state) => state.user);
 
-  console.log(userPosts);
   useEffect(() => {
     const fetchPosts = async() => {
 
