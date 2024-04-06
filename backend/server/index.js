@@ -6,12 +6,19 @@ import authRouter from '../routes/auth.route.js';
 import postRouter from '../routes/post.route.js';
 import cookieParser from 'cookie-parser';
 import commentRouter from '../routes/comment.route.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 dotenv.config();
-
+const options = {
+    origin: 'https://akjblogs.vercel.app/',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+    credentials: true 
+  }
+app.use(cors(options));
 app.use(express.json());
 app.use(cookieParser());
 
