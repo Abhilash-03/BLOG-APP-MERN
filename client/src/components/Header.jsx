@@ -15,6 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { theme } = useSelector(state => state.theme);
   const [searchTerm, setSearchTerm] = useState('');
+  const URL = 'https://akjblogserver.vercel.app';
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -26,7 +27,7 @@ const Header = () => {
 
   const handleLogout = async() => {
     try {
-     const res = await fetch(`/api/v1/user/logout`, {
+     const res = await fetch(`${URL}/api/v1/user/logout`, {
        method: 'POST',
      })
      const data = await res.json();

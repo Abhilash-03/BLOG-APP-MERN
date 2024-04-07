@@ -12,6 +12,8 @@ const Singup = () => {
   const handleChange = (e) => {
       setFormData({ ...formData, [e.target.id] : e.target.value.trim() });
   }
+  const URL = 'https://akjblogserver.vercel.app';
+
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ const Singup = () => {
     try {
       setIsLoading(true);
       setErrorMsg(null);
-      const res = await fetch('/api/v1/auth/signup', {
+      const res = await fetch(`${URL}/api/v1/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

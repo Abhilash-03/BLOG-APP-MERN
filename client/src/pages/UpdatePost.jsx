@@ -17,11 +17,12 @@ const UpdatePost = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  const URL = 'https://akjblogserver.vercel.app';
 
   useEffect(() => {
     try {
       const fetchPost = async () => {
-        const res = await fetch(`/api/v1/posts/getPosts?postId=${postId}`);
+        const res = await fetch(`${URL}/api/v1/posts/getPosts?postId=${postId}`);
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
@@ -80,7 +81,7 @@ const UpdatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/v1/posts/updatePost/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`${URL}/api/v1/posts/updatePost/${formData._id}/${currentUser._id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

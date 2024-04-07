@@ -9,10 +9,12 @@ export default function DashComments() {
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [commentIdToDelete, setCommentIdToDelete] = useState('');
+  const URL = 'https://akjblogserver.vercel.app';
+
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`/api/v1/comment/getcomments`);
+        const res = await fetch(`${URL}/api/v1/comment/getcomments`);
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -33,7 +35,7 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/v1/comment/getcomments?startIndex=${startIndex}`
+        `${URL}/api/v1/comment/getcomments?startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -51,7 +53,7 @@ export default function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/v1/comment/deleteComment/${commentIdToDelete}`,
+        `${URL}/api/v1/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
         }

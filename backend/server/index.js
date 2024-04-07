@@ -12,15 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 dotenv.config();
-const options = {
-    origin: 'https://akjblogs.vercel.app/',
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'], 
-    allowedHeaders: ['Content-Type', 'Authorization'], 
+const corsOptions = {
+    origin: ['https://akjblogs.vercel.app', 'http://localhost:5173'], // Frontend URL
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specified headers
     credentials: true 
-  }
-app.use(cors(options));
+  };
+  
+  // Enable CORS with the configured options
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser());    
 
 app.get('/', (req, res) => {
     res.send('Hello MERN BLOG APP server')

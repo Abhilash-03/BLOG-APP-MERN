@@ -15,7 +15,7 @@ const CreatePost = () => {
   const [publishError, setPublishError] = useState(null);
 
   const navigate = useNavigate();
-
+  const URL = 'https://akjblogserver.vercel.app';
   const handleUploadImage = async() => {
     try {
       if(!file){
@@ -34,7 +34,7 @@ const CreatePost = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImageUploadProgress(progress.toFixed(0));
         },
-        (error) => {
+        () => {
           setImageUploadError('Image upload failed');
           setImageUploadProgress(null);
         },
@@ -56,8 +56,9 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/v1/posts/create', {
+      const res = await fetch(`${URL}/api/v1/posts/create`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

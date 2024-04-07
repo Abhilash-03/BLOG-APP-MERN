@@ -13,6 +13,8 @@ const CommentSection = ({ postId }) => {
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
   const navigate = useNavigate();
+  const URL = 'https://akjblogserver.vercel.app';
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ const CommentSection = ({ postId }) => {
       return;
     }
     try {
-      const res = await fetch('/api/v1/comment/create', {
+      const res = await fetch(`${URL}/api/v1/comment/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +47,7 @@ const CommentSection = ({ postId }) => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(`/api/v1/comment/getPostComments/${postId}`);
+        const res = await fetch(`${URL}/api/v1/comment/getPostComments/${postId}`);
         if (res.ok) {
           const data = await res.json();
           setComments(data);
@@ -64,7 +66,7 @@ const CommentSection = ({ postId }) => {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`/api/v1/comment/likeComment/${commentId}`, {
+      const res = await fetch(`${URL}/api/v1/comment/likeComment/${commentId}`, {
         method: 'PUT',
       });
       if (res.ok) {
@@ -101,7 +103,7 @@ const CommentSection = ({ postId }) => {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`/api/v1/comment/deleteComment/${commentId}`, {
+      const res = await fetch(`${URL}/api/v1/comment/deleteComment/${commentId}`, {
         method: 'DELETE',
       });
       if (res.ok) {

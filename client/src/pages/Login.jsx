@@ -13,7 +13,8 @@ const Login = () => {
   const handleChange = (e) => {
       setFormData({ ...formData, [e.target.id] : e.target.value.trim() });
   }
-
+  const URL = 'https://akjblogserver.vercel.app';
+  
   const handleSubmit = async(e) => {
     e.preventDefault();
     const { email, password } = formData;
@@ -22,10 +23,11 @@ const Login = () => {
     }
     try {
       dispatch(loginStart());
-      const res = await fetch('/api/v1/auth/login', {
-        method: 'POST',
+      const res = await fetch(`${URL}/api/v1/auth/login`, {
+        method: 'POST', 
+        credentials: 'include',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       })

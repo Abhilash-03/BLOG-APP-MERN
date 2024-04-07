@@ -22,6 +22,8 @@ const DashProfile = () => {
     const [showModal, setShowModal] = useState(false);
     const filePickerRef = useRef();
     const dispatch = useDispatch();
+    const URL = 'https://akjblogserver.vercel.app';
+
 
     const handleImageChange = (e) => {
       const file = e.target.files[0];
@@ -98,7 +100,7 @@ const DashProfile = () => {
       }
       try {
         dispatch(updateStart());
-        const res = await fetch(`/api/v1/user/update/${currentUser._id}`, {
+        const res = await fetch(`${URL}/api/v1/user/update/${currentUser._id}`, {
           method: 'PATCH',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(formData)
@@ -121,7 +123,7 @@ const DashProfile = () => {
     const handleDeleteUser = async() => {
       setShowModal(false);
        try {
-        const res = await fetch(`/api/v1/user/delete/${currentUser._id}`, {
+        const res = await fetch(`${URL}/api/v1/user/delete/${currentUser._id}`, {
           method: 'DELETE'
         });
         const data = await res.json();
@@ -137,7 +139,7 @@ const DashProfile = () => {
 
     const handleLogout = async() => {
          try {
-          const res = await fetch(`/api/v1/user/logout`, {
+          const res = await fetch(`${URL}/api/v1/user/logout`, {
             method: 'POST',
           })
           const data = await res.json();

@@ -16,6 +16,7 @@ const Search = () => {
     
       const location = useLocation();
       const navigate = useNavigate();
+      const URL = 'https://akjblogserver.vercel.app';
     
       useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
@@ -34,7 +35,7 @@ const Search = () => {
         const fetchPosts = async () => {
           setLoading(true);
           const searchQuery = urlParams.toString();
-          const res = await fetch(`/api/v1/posts/getPosts?${searchQuery}`);
+          const res = await fetch(`${URL}/api/v1/posts/getPosts?${searchQuery}`);
           if (!res.ok) {
             setLoading(false);
             return;
@@ -83,7 +84,7 @@ const Search = () => {
         const urlParams = new URLSearchParams(location.search);
         urlParams.set('startIndex', startIndex);
         const searchQuery = urlParams.toString();
-        const res = await fetch(`/api/post/getposts?${searchQuery}`);
+        const res = await fetch(`${URL}/api/post/getposts?${searchQuery}`);
         if (!res.ok) {
           return;
         }

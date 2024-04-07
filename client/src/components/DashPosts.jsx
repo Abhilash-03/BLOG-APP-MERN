@@ -10,12 +10,13 @@ const DashPosts = () => {
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState('');
   const { currentUser } = useSelector((state) => state.user);
+  const URL = 'https://akjblogserver.vercel.app';
 
   useEffect(() => {
     const fetchPosts = async() => {
 
       try {
-        const res = await fetch(`/api/v1/posts/getPosts?userId=${currentUser._id}`);
+        const res = await fetch(`${URL}/api/v1/posts/getPosts?userId=${currentUser._id}`);
         const data = await res.json();
         if(res.ok) {
           setUserPosts(data.posts);
@@ -37,7 +38,7 @@ const DashPosts = () => {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `/api/v1/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+        `${URL}/api/v1/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -55,7 +56,7 @@ const DashPosts = () => {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/v1/posts/deletePost/${postIdToDelete}/${currentUser._id}`,
+        `${URL}/api/v1/posts/deletePost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
         }

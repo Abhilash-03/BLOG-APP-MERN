@@ -49,7 +49,7 @@ const login = async(req, res, next) => {
 
     const { password: pass, ...rest} = validUser._doc; //get userdetails without password.
 
-    res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest);
+    res.status(200).cookie('access_token', token, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 2 * 24 * 60 * 60 * 1000 }).json(rest);
 
   } catch (error) {
      next(error)
@@ -68,7 +68,7 @@ const google = async(req, res, next) => {
           { expiresIn: '1d' }
         )
         const { password, ...rest } = user._doc;
-        res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest)
+        res.status(200).cookie('access_token', token, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 2 * 24 * 60 * 60 * 1000 }).json(rest)
     } else {
       const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
       const hashedPassword = await bcryptjs.hash(generatedPassword, 10);
@@ -88,7 +88,7 @@ const google = async(req, res, next) => {
       res
        .status(200)
        .cookie('access_token', token, {
-        httpOnly: true
+        httpOnly: true, sameSite: 'None', secure: true, maxAge: 2 * 24 * 60 * 60 * 1000
        })
        .json(rest);
 

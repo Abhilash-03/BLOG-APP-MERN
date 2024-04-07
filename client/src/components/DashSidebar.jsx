@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 const DashSidebar = () => {
     const location = useLocation();
     const [tab, setTab] = useState('');
+    const URL = 'https://akjblogserver.vercel.app';
+
     useEffect(() => {
       const urlParams = new URLSearchParams(location.search);
       const tabFromUrl = urlParams.get('tab');
@@ -18,7 +20,7 @@ const DashSidebar = () => {
 
     const handleLogout = async() => {
       try {
-       const res = await fetch(`/api/v1/user/logout`, {
+       const res = await fetch(`${URL}/api/v1/user/logout`, {
          method: 'POST',
        })
        const data = await res.json();

@@ -7,12 +7,13 @@ import react from '@vitejs/plugin-react-swc'
       proxy:{
         '/api': {
           target: 'https://akjblogserver.vercel.app',
-          // target: 'http://localhost:3000',
           secure: true,
-          changeOrigin: true, 
+          changeOrigin: true,
         }
       }
     
     },
     plugins: [react()],
   })
+  
+

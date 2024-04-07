@@ -10,13 +10,16 @@ const OAuth = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const auth = getAuth(app);
+  const URL = 'https://akjblogserver.vercel.app';
+
     const handleGoogleClick = async() => {
       const provider = new GoogleAuthProvider()
       provider.getCustomParameters({ prompt: 'select_account' });
       try {
         const resultsFromGoogle = await signInWithPopup(auth, provider);
-        const res = await fetch('/api/v1/auth/google', {
+        const res = await fetch(`${URL}/api/v1/auth/google`, {
             method: 'POST',
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: resultsFromGoogle.user.displayName,

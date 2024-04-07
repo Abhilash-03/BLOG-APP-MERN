@@ -5,10 +5,11 @@ import PostCard from '../components/PostCard';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const URL = 'https://akjblogserver.vercel.app';
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch('/api/v1/posts/getPosts');
+      const res = await fetch(`${URL}/api/v1/posts/getPosts`);
       const data = await res.json();
       setPosts(data.posts);
     };

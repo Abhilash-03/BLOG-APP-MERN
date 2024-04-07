@@ -20,10 +20,12 @@ export default function DashboardComp() {
   const [lastMonthPosts, setLastMonthPosts] = useState(0);
   const [lastMonthComments, setLastMonthComments] = useState(0);
   const { currentUser } = useSelector((state) => state.user);
+  const URL = 'https://akjblogserver.vercel.app';
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('/api/v1/user/getusers?limit=5');
+        const res = await fetch(`${URL}/api/v1/user/getusers?limit=5`);
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -36,7 +38,7 @@ export default function DashboardComp() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch('/api/v1/posts/getPosts?limit=5');
+        const res = await fetch(`${URL}/api/v1/posts/getPosts?limit=5`);
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);
@@ -49,7 +51,7 @@ export default function DashboardComp() {
     };
     const fetchComments = async () => {
       try {
-        const res = await fetch('/api/v1/comment/getcomments?limit=5');
+        const res = await fetch(`${URL}/api/v1/comment/getcomments?limit=5`);
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
