@@ -29,6 +29,7 @@ const Header = () => {
     try {
      const res = await fetch(`${URL}/api/v1/user/logout`, {
        method: 'POST',
+       credentials: 'include',
      })
      const data = await res.json();
 

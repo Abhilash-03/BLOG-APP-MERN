@@ -35,7 +35,7 @@ const Search = () => {
         const fetchPosts = async () => {
           setLoading(true);
           const searchQuery = urlParams.toString();
-          const res = await fetch(`${URL}/api/v1/posts/getPosts?${searchQuery}`);
+          const res = await fetch(`${URL}/api/v1/posts/getPosts?${searchQuery}`, {credentials: 'include'});
           if (!res.ok) {
             setLoading(false);
             return;
@@ -84,7 +84,7 @@ const Search = () => {
         const urlParams = new URLSearchParams(location.search);
         urlParams.set('startIndex', startIndex);
         const searchQuery = urlParams.toString();
-        const res = await fetch(`${URL}/api/post/getposts?${searchQuery}`);
+        const res = await fetch(`${URL}/api/post/getposts?${searchQuery}`, {credentials: 'include'});
         if (!res.ok) {
           return;
         }

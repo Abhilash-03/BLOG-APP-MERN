@@ -14,7 +14,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`${URL}/api/v1/user/${comment.userId}`);
+        const res = await fetch(`${URL}/api/v1/user/${comment.userId}`, {credentials: 'include'});
         const data = await res.json();
         if (res.ok) {
           setUser(data);
@@ -35,6 +35,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
     try {
       const res = await fetch(`${URL}/api/v1/comment/editComment/${comment._id}`, {
         method: 'PUT',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

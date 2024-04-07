@@ -102,6 +102,7 @@ const DashProfile = () => {
         dispatch(updateStart());
         const res = await fetch(`${URL}/api/v1/user/update/${currentUser._id}`, {
           method: 'PATCH',
+          credentials: 'include',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(formData)
         });
@@ -124,7 +125,8 @@ const DashProfile = () => {
       setShowModal(false);
        try {
         const res = await fetch(`${URL}/api/v1/user/delete/${currentUser._id}`, {
-          method: 'DELETE'
+          method: 'DELETE',
+          credentials: 'include'
         });
         const data = await res.json();
         if(res.ok){
@@ -141,6 +143,7 @@ const DashProfile = () => {
          try {
           const res = await fetch(`${URL}/api/v1/user/logout`, {
             method: 'POST',
+            credentials: 'include'
           })
           const data = await res.json();
 

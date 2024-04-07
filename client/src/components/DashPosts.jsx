@@ -16,7 +16,7 @@ const DashPosts = () => {
     const fetchPosts = async() => {
 
       try {
-        const res = await fetch(`${URL}/api/v1/posts/getPosts?userId=${currentUser._id}`);
+        const res = await fetch(`${URL}/api/v1/posts/getPosts?userId=${currentUser._id}`, {credentials: 'include'});
         const data = await res.json();
         if(res.ok) {
           setUserPosts(data.posts);
@@ -38,7 +38,8 @@ const DashPosts = () => {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `${URL}/api/v1/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+        `${URL}/api/v1/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
+        {credentials: 'include'}
       );
       const data = await res.json();
       if (res.ok) {
@@ -59,6 +60,7 @@ const DashPosts = () => {
         `${URL}/api/v1/posts/deletePost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
+          credentials: 'include'
         }
       );
       const data = await res.json();

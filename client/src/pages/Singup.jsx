@@ -26,6 +26,7 @@ const Singup = () => {
       setErrorMsg(null);
       const res = await fetch(`${URL}/api/v1/auth/signup`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         },

@@ -22,7 +22,7 @@ const UpdatePost = () => {
   useEffect(() => {
     try {
       const fetchPost = async () => {
-        const res = await fetch(`${URL}/api/v1/posts/getPosts?postId=${postId}`);
+        const res = await fetch(`${URL}/api/v1/posts/getPosts?postId=${postId}`, {credentials: 'include'});
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
@@ -59,7 +59,7 @@ const UpdatePost = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImageUploadProgress(progress.toFixed(0));
         },
-        (error) => {
+        () => {
           setImageUploadError('Image upload failed');
           setImageUploadProgress(null);
         },
@@ -83,6 +83,7 @@ const UpdatePost = () => {
     try {
       const res = await fetch(`${URL}/api/v1/posts/updatePost/${formData._id}/${currentUser._id}`, {
         method: 'PATCH',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
