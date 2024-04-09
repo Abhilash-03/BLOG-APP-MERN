@@ -15,18 +15,24 @@ body{
   }
   
   .post-content h1 {
-    font-size: 1.5rem;
+    font-size: 2.9rem;
     font-weight: 600;
-    font-family: sans-serif;
+    font-family: serif;
     margin: 1.5rem 0;
   }
   
   .post-content h2 {
-    font-size: 1.4rem;
-    font-family: sans-serif;
+    font-size: 2.1rem;
+    font-family: serif;
     margin: 1.5rem 0;
   }
   
+  .post-content p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
   .post-content a {
     color: rgb(73, 149, 199);
     text-decoration: none;
@@ -39,3 +45,26 @@ body{
   .dark .post-content a {
     color: red;
   }
+
+.dark code{
+  color: black;
+}
+.dark .ql-toolbar{
+  background-color: rgb(0, 0, 0);
+}
+.dark .ql-toolbar{
+  background-color: rgb(63, 164, 237);
+}
+
+.post-content code{
+  background-color: rgb(20, 8, 71);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+
+  .dark .post-content code{
+    background-color: rgb(0, 0, 0);
+    color: white;
+  } 

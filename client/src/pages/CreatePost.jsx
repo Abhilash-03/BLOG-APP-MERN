@@ -78,7 +78,40 @@ const CreatePost = () => {
       setPublishError('Something went wrong');
     }
   };
-
+  const formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'code',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+  ]
+  const modules = {
+    toolbar: [
+      [{ header: '1' }, { header: '2' }, { font: [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+      ],
+      ['link', 'formula'],
+      ['clean'],
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false,
+    },
+  }
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1 className='text-center text-3xl my-7 font-semibold'>Create a post</h1>
@@ -135,9 +168,11 @@ const CreatePost = () => {
           />
         )}
         <ReactQuill
+        formats={formats}
+        modules={modules}
           theme='snow'
           placeholder='Write something...'
-          className='h-72 mb-12'
+          className='h-80 mb-12'
           required
           onChange={(value) => setFormData({...formData, content: value})}
         />
